@@ -16,11 +16,14 @@ const product = (state = initialState, action) => {
             }
         }
         case types.GET_ALL_PRODUCTS_SUCCESS: {
+            let newPayload = action.payload.map((o) => {
+                return {...o, addedToCart: false}
+            }) 
             return {
                 ...state,
                 products: [
                     ...state.products,
-                    ...action.payload
+                    ...newPayload
                 ],
                 processing: false
             }
@@ -38,10 +41,48 @@ const product = (state = initialState, action) => {
                 processing: false
             }
         }
+        case types.ITEM_ADDED_TO_CART: {
+            return {
+                ...state,
+                products: [
+                    ...state.products.map(p => {
+                        if (p.id === action.payload) {
+                            return {...p, addedToCart: true}
+                        }
+                        return p
+                    })
+                ]
+                
+            }
+        }
+        case types.ITEM_DELETED_FROM_CART: {
+            return {
+                ...state,
+                products: [
+                    ...state.products.map(p => {
+                        if (p.id === action.payload) {
+                            return {...p, addedToCart: false}
+                        }
+                        return p
+                    })
+                ]
+                
+            }
+        }
+
+
+        
+        case types.FILLTER_PRICE_HIGHT_TO_LOW:
+            return {
+                ...state,
+                products: [...state.products.sort((a, b) => b.price - a.price)]
+            }
+        case types.FILLTER_PRICE_LOW_TO_HIGHT:
+            return {
+                ...state,
+                products: [...state.products.sort((a, b) => a.price - b.price)]
+            }
  
-
-
-
 
 
         case types.GET_PRODUCT_BY_CATEGORY_SUCCESS: {

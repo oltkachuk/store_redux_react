@@ -14,7 +14,6 @@ function* getAllProduct() {
 }
 
 function* getProductById(action) {
-    console.log(action);
     try {
         const data = yield call(getItemById, action.payload)
         console.log(data);

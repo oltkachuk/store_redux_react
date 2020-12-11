@@ -21,4 +21,13 @@ code {
 .item {
   margin-top: 15px;
 }
+.imag {
+  min-height: 200px;
+}
+.cartItem {
+  max-width: 540px
+}
 
+img {
+  width: 100%;
+}

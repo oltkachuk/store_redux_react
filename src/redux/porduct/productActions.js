@@ -17,4 +17,16 @@ export function getRequestProductByIdAction (payload) {
 export function getProductByIdAction (payload) {
     return { type: types.GET_PRODUCT_BY_ID_SUCCESS, payload }
 }
+export function setFelterHightToLowAction (payload) {
+    return { type: types.FILLTER_PRICE_HIGHT_TO_LOW, payload }
+}
+export function setFelterLowToHightAction (payload) {
+    return { type: types.FILLTER_PRICE_LOW_TO_HIGHT, payload }
+}
 
+export function itemAddedToCartAction (payload) {
+    return { type: types.ITEM_ADDED_TO_CART, payload }
+}
+export function itemDeletedFromCartAction (payload) {
+    return { type: types.ITEM_DELETED_FROM_CART, payload }
+}

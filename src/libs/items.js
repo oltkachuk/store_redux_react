@@ -1,10 +1,5 @@
-import API from './index'
+// import API from './index'
 
-export async function getItemsByCategory( categoryId ) {
-    const result = await API.get(`product/category/${categoryId}`)
-
-    return result.data
-}
 
 export async function getItems() {
     const result = await (await fetch("https://fakestoreapi.com/products")).json()
@@ -13,7 +8,7 @@ export async function getItems() {
 }
 
 // export async function getItems() {
-//     const result = await API.get('/products')
+//     const result = await API.get('/')
 
 //     return result.data
 // }
