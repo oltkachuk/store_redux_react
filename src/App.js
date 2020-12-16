@@ -1,9 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import CategoryItems from "./components/Category/CategoryItems";
 import Navbar from "./components/Navbar/Navbar";
 import CartContainer from "./containers/CartContainer";
-import ItemContainer from "./containers/ItemContainer";
+import CategoryContainer from "./containers/CategoryContainer";
+import FavoritesContainer from "./containers/FavoritesContainer";
 import ItmesContainer from "./containers/ItemsContainer";
+import SingleProductContainer from "./containers/SingleProductContainer";
 
 
 
@@ -12,13 +15,16 @@ import ItmesContainer from "./containers/ItemsContainer";
 const App = () => {
 	return (
 		<BrowserRouter>
-			<header className="container-fluid navbar">
+			<div className="container-fluid navbar">
 				<Navbar />
-			</header>
+			</div>
 			<Switch>
-				<Route path="/" exact component={ ItmesContainer } />
+				<Route path="/item/:id" exact component={ SingleProductContainer } />
 				<Route path="/cart" exact component={ CartContainer } />
-				<Route path="/item/:id" exact component={ ItemContainer } />
+				<Route path="/categories" exact component={ CategoryContainer } />
+				<Route path="/categories/:categoryName" exact component={ CategoryItems } />
+				<Route path="/favorites" exact component={ FavoritesContainer } />
+				<Route path="/" component={ ItmesContainer } />
 			</Switch>
 		</BrowserRouter>
 	)

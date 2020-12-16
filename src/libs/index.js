@@ -1,10 +1,11 @@
 import axios from "axios"
 
 
+
 export default axios.create({
-    baseUrl: "https://fakestoreapi.com",
+    baseURL: process.env.REACT_APP_API,
     responseType: "json",
-    headers: {
-        "TAI-Sub-Key": "https://fakestoreapi.com"
-    }
+    params: {
+        key: process.env.REACT_APP_KEY
+    } 
 })

@@ -1,7 +1,10 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
 import Items from '../components/Items/Items'
-import { addItemToCartAction } from '../redux/cart/cartActions'
-import { getRequestAllProductAction, itemAddedToCartAction, itemDeletedFromCartAction,  } from '../redux/porduct/productActions'
+import { requestAddItemToCartAction } from '../redux/cart/cartActions'
+import { addItemToFavoritesAction } from '../redux/favorites/favoritesActions'
+import { changedPageCountAction, getRequestAllProductAction, sortByNewBookRequestAction } from '../redux/porduct/productActions'
 
 
 const mapStateToProps = (state) => {
@@ -14,7 +17,9 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
 	getRequestAllProductAction,
-	addItemToCartAction,
-	itemAddedToCartAction,
-	itemDeletedFromCartAction
-})(Items)
+	requestAddItemToCartAction,
+	changedPageCountAction,
+	sortByNewBookRequestAction,
+	addItemToFavoritesAction
+
+})(withRouter(Items))

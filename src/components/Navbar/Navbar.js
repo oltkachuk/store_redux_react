@@ -1,29 +1,47 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { connect } from "react-redux";
+import { Link, NavLink, withRouter } from "react-router-dom"
+import Search from "../../containers/Search"
+import { changedPageCountAction, goHomeAction } from "../../redux/porduct/productActions";
 import s from "./Navbar.module.css"
 
 
-const Navbar = () => {
- 
+const Navbar = (props) => {
+  let search = props.queryParams.search
+  let pageSize = props.queryParams.pageSize
+  let page = 1
+
   return (
     <nav className={s.navbar}>
       <ul className={s.list}>
-        <li>Logo</li>
-        <li>
-          <NavLink to="/">Home</NavLink>
+        <li className="nav-item">
+          <Link className="nav-link" to="/" onClick={() => props.changedPageCountAction({search, pageSize, page})}>Домашня</Link>
         </li>
-        <li>Categories</li>
-        <li>Search</li>
-        <button>Sort hight to lower</button>
-        <button>Sort lower to hight</button>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/categories">Категорії</NavLink>
+        </li>
+        <Search />
       </ul>
       <div className={s.cart}>
-        <button>
-          <NavLink to="/cart"> Cart </NavLink>
-        </button>
+        <ul className={s.list}>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/favorites">
+            Улюблені
+          </NavLink>
+          </li>
+          <li className="nav-item">
+              <NavLink className="nav-link" to="/cart"> Корзина </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar
+
+const mapStateToProps = (state) => ({ ...state.product })
+
+export default connect(mapStateToProps, {
+  goHomeAction,
+  changedPageCountAction
+})(withRouter(Navbar))
